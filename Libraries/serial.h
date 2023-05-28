@@ -7,18 +7,19 @@
 
 typedef enum
 {
-  HOR_SCAN,
-  STEPS,
-  DISTANCE,
-  SHOOT,
+  CAM_POS,
+  VERTICAL_ANGL,
   RETRACT,
+  LEFT,
+  RIGHT,
+  SHOOT,
   ERROR
 } serial_cmd_t;
 
 typedef struct  // the serial communication is always 1 cmd byte followed with 1 value byte (in raw data)
 {               // size of the value is limited from 0->254 (8 bit)
   serial_cmd_t cmd;
-  uint8_t data;
+  int data;
 } serial_data_t;
 
 enum State {
@@ -26,7 +27,7 @@ enum State {
     ReadingValue,
 };
 
-void serialSend(serial_data_t *data);
+// void serialSend(serial_data_t *data);
 
 void serialRead(serial_data_t *data);
 
